@@ -1,49 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BookService } from '../book.service';
+
+import { GenericViewComponent } from 'src/app/framework/generic-view.component';
+import { GenericService } from 'src/app/framework/generic.service';
+
 import { Book } from '../book';
-import { listUrl, BOOK_URL, editUrl } from 'src/app/app.urls';
-import { getParam } from 'src/app/routes.util';
+import { BOOK_URL } from 'src/app/app.urls';
 
 @Component({
   selector: 'app-book-view',
   templateUrl: './book-view.component.html',
   styleUrls: ['./book-view.component.css']
 })
-export class BookViewComponent implements OnInit {
-
-  book: Book;
+export class BookViewComponent extends GenericViewComponent<Book> {
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private service: BookService) { 
-
-  }
-
-  ngOnInit() {
-    this.loadBook();
-  }
-
-  protected loadBook(): void {
-    const id = +getParam(this.route, 'id');
-    this.service.getOne(id)
-      .subscribe( 
-        (book: Book) => {
-          this.book = book;
-        }
-      );
-  }
-
-  back() {
-    this.service.clearMessage();
-    this.router.navigate(listUrl(BOOK_URL));
-    return false;
-  }
-
-  edit() {
-    this.service.clearMessage();
-    this.router.navigate(editUrl(BOOK_URL, this.book.id));
-    return false;
+    router: Router,
+    route: ActivatedRoute,
+    service: GenericService<Book>) { 
+      super(router, route, service);
+      super.baseUrl = BOOK_URL;
   }
 }

@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppService } from './app.service';
+import { GenericService } from './framework/generic.service';
 
 
 
@@ -19,7 +20,10 @@ import { AppService } from './app.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AppService],
+  providers: [
+    AppService,
+    GenericService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,7 +10,7 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let book of books">
+    <tr *ngFor="let book of items">
       <td>{{book.title}}</td>
       <td>{{book.author}}</td>
       <td><a href="#" (click)="show(book.id)">Show</a></td>
@@ -20,4 +20,4 @@
   </tbody>
 </table>
 
-<a href="#" (click)="newBook()">New Book</a>
+<a href="#" (click)="newItem()">New Book</a>

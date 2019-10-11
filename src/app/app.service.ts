@@ -14,6 +14,6 @@ export class AppService {
   }
 
   clearMessage() {
-    this.messageChangedSource.next(null);
+    this.messageChangedSource.next(undefined);
   }
 }

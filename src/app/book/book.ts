@@ -1,10 +1,9 @@
-export class Book {
-    
-    public id: number;
+import { GenericModel } from '../framework/generic.model';
+
+export class Book extends GenericModel {
   
-    constructor(
-      public title: string,
-      public author: string) {}
+  public title: string;
+  public author: string;
   
 }
   

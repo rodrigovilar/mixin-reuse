@@ -1,5 +1,5 @@
   
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 
 @Component({
@@ -7,13 +7,15 @@ import { AppService } from './app.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   message: string;
 
-  constructor(service: AppService) {
-    service.messageChanged$.subscribe(
-      message => this.message = message);
+  constructor(private service: AppService) {
   }
 
+  ngOnInit(): void {
+    this.service.messageChanged$.subscribe(
+      message => this.message = message);
+  }
 }
