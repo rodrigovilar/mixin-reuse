@@ -1,15 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppService } from './app.service';
+import { setAppInjector } from './app.injector';
+import { ReactiveFormsModule } from '@angular/forms';
 import { GenericService } from './framework/generic.service';
+import { CrudModule } from './framework/decorators';
+import { BOOK_URL } from './app.urls';
 
 
-
+@CrudModule(BOOK_URL)
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +22,7 @@ import { GenericService } from './framework/generic.service';
   imports: [
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [
@@ -26,4 +31,8 @@ import { GenericService } from './framework/generic.service';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private injector: Injector) {
+    setAppInjector(this.injector);
+  }
+}

@@ -1,4 +1,5 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs';
 
 /**
  * Gets the param from the activated route.

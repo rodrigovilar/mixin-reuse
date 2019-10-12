@@ -1,24 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
 
-import { GenericViewComponent } from 'src/app/framework/generic-view.component';
-import { GenericService } from 'src/app/framework/generic.service';
+import { ViewComponent } from 'src/app/framework/decorators';
 
-import { Book } from '../book';
 import { BOOK_URL } from 'src/app/app.urls';
+import { ActivatedRoute } from '@angular/router';
 
+@ViewComponent(BOOK_URL)
 @Component({
   selector: 'app-book-view',
   templateUrl: './book-view.component.html',
   styleUrls: ['./book-view.component.css']
 })
-export class BookViewComponent extends GenericViewComponent<Book> {
+export class BookViewComponent {
 
-  constructor(
-    router: Router,
-    route: ActivatedRoute,
-    service: GenericService<Book>) { 
-      super(router, route, service);
-      super.baseUrl = BOOK_URL;
-  }
+  constructor(protected route: ActivatedRoute) {}
 }
